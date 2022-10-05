@@ -11,7 +11,10 @@ GameObject:
   - component: {fileID: 7206089786943542540}
   - component: {fileID: 5648422052037111523}
   - component: {fileID: 579265291736801278}
+  - component: {fileID: 930769906583350652}
+  - component: {fileID: -2742335789934904617}
   - component: {fileID: 5123530322040556903}
+  - component: {fileID: 5202204469665503739}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -77,6 +80,30 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &930769906583350652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6800058454167174683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 753a731282355449b99c05fabcfab743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-2742335789934904617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6800058454167174683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0033b75dacaf2483099389332f8160eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5123530322040556903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,6 +116,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aabab808568be4022b2ae13d1812eceb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5202204469665503739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6800058454167174683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c998e2b4115046b68e7102604a358cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponRange: 2
 --- !u!1001 &6055029965484636384
 PrefabInstance:
   m_ObjectHideFlags: 0
