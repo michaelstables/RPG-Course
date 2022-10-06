@@ -12,11 +12,15 @@ namespace RPG.Movement
     {
         NavMeshAgent navMeshAgent;
         Health health;
+        ActionScheduler actionScheduler;
+        Animator animator;
 
         private void Start()
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
             health = GetComponent<Health>();
+            actionScheduler = GetComponent<ActionScheduler>();
+            animator = GetComponent<Animator>();
         }
 
         void Update()
@@ -27,7 +31,7 @@ namespace RPG.Movement
 
         public void StartMoveAction(Vector3 destination)
         {
-            GetComponent<ActionScheduler>().StartAction(this);
+            actionScheduler.StartAction(this);
             MoveTo(destination);
         }
 
@@ -46,7 +50,7 @@ namespace RPG.Movement
             Vector3 velocity = navMeshAgent.velocity;
             Vector3 localVelocity = transform.InverseTransformDirection(velocity);
             float speed = localVelocity.z;
-            GetComponent<Animator>().SetFloat("Forward Speed", speed);
+            animator.SetFloat("Forward Speed", speed);
         }
 
         // Animation Event During Run Forward Animation
