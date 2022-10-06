@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using RPG.Core;
 using RPG.Movement;
 using RPG.Combat;
 
@@ -9,10 +10,22 @@ namespace RPG.Control
 {
     public class PlayerController : MonoBehaviour
     {
+        Health health;
+        Mover mover;
+        Fighter fighter;
+
+        private void Start()
+        {
+            health = GetComponent<Health>();
+            mover = GetComponent<Mover>();
+            fighter = GetComponent<Fighter>();
+        }
+
         private void Update()
         {
-            if (InteractWithCombat()) return;
-            if (InteractWithMovement()) return;
+            if (health.IsDead()) { return; }
+            if (InteractWithCombat()) { return; }
+            if (InteractWithMovement()) { return; }
         }
 
         private bool InteractWithCombat()
@@ -21,14 +34,13 @@ namespace RPG.Control
             foreach (RaycastHit hit in hits)
             {
                 CombatTarget target = hit.transform.GetComponent<CombatTarget>();
-                if (!GetComponent<Fighter>().CanAttack(target))
-                {
-                    continue;
-                }
+                if (target == null) { continue; }
 
-                if (Input.GetMouseButtonDown(0))
+                if (!fighter.CanAttack(target.gameObject)) { continue; }
+
+                if (Input.GetMouseButton(0))
                 {
-                    GetComponent<Fighter>().Attack(target);
+                    fighter.Attack(target.gameObject);
                 }
 
                 return true;
@@ -45,14 +57,14 @@ namespace RPG.Control
             {
                 if (Input.GetMouseButton(0))
                 {
-                    GetComponent<Mover>().StartMoveAction(hit.point);
+                    mover.StartMoveAction(hit.point);
                 }
 
                 return true;
             }
             if (Input.GetMouseButtonUp(0))
             {
-                GetComponent<Mover>().Cancel();
+               mover.Cancel();
             }
             return false;
         }

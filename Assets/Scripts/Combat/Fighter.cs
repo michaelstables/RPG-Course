@@ -20,8 +20,9 @@ namespace RPG.Combat
         {
             timeSinceLastAttack += Time.deltaTime;
 
-            if (target == null) return;
-            if (target.IsDead()) return;
+            if (target == null) { return; }
+
+            if (target.IsDead()) { return; }
 
             if (!IsInRange())
             {
@@ -56,17 +57,16 @@ namespace RPG.Combat
             return Vector3.Distance(transform.position, target.transform.position) < weaponRange;
         }
 
-        public bool CanAttack(CombatTarget combatTarget)
+        public bool CanAttack(GameObject combatTarget)
         {
             if (combatTarget == null) { return false; }
             Health targetToTest = combatTarget.GetComponent<Health>();
             return targetToTest != null && !targetToTest.IsDead();
         }
 
-        public void Attack(CombatTarget target)
+        public void Attack(GameObject target)
         {
             GetComponent<ActionScheduler>().StartAction(this);
-            Debug.Log("Take that you short, squat peasant!");
             this.target = target.GetComponent<Health>();        }
 
         public void Cancel()
@@ -84,7 +84,7 @@ namespace RPG.Combat
         // Animation Event during Attack Animation
         void Hit()
         {
-            if (target == null) return;
+            if (target == null) { return; }
             target.TakeDamage(unarmedDamage);
         }
     }
