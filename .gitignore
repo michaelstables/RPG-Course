@@ -9,6 +9,7 @@
 /[Mm]emoryCaptures/
 /Assets/AssetPacks/
 
+
 # Never ignore Asset meta data
 !/[Aa]ssets/**/*.meta
 
