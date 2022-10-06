@@ -5,20 +5,23 @@ using UnityEngine;
 using RPG.Core;
 using RPG.Combat;
 using RPG.Movement;
-using System;
 using UnityEngine.AI;
 
 namespace RPG.Control
 {
     public class AIController : MonoBehaviour
     {
+        [Header("Include Patrol Path for Enemy")]
         [SerializeField] PatrolPath patrolPath;
+
+        [Header("Tuning")]
         [SerializeField] float chaseDistance = 5f;
-        [SerializeField] float susicionTime = 3f;
-        [SerializeField] float waypointTolerance = 1f;
-        [SerializeField] float patrolSpeed = 1.5f;
-        [SerializeField] float attackSpeed = 3f;
+        [SerializeField] float suspicionTime = 3f;
+        [SerializeField] float patrolMovementSpeed = 1.5f;
+        [SerializeField] float attackMovementSpeed = 3f;
         [SerializeField] float waypointDwellTime = 3f;
+        [Tooltip("How exact enemy position needs to be before waypoint arrival")]
+        [SerializeField] float waypointTolerance = 1f;
 
         GameObject player;
 
@@ -55,7 +58,7 @@ namespace RPG.Control
             {
                 AttackBehaviour();
             }
-            else if (timeSinceLastSawPlayer < susicionTime)
+            else if (timeSinceLastSawPlayer < suspicionTime)
             {
                 SuspicionBehavior();
             }
@@ -77,19 +80,19 @@ namespace RPG.Control
         private void AttackBehaviour()
         {
             timeSinceLastSawPlayer = 0;
-            navMeshAgent.speed = attackSpeed;
+            navMeshAgent.speed = attackMovementSpeed;
             fighter.Attack(player);
         }
 
         private void SuspicionBehavior()
         {
-            navMeshAgent.speed = patrolSpeed;
+            navMeshAgent.speed = patrolMovementSpeed;
             GetComponent<ActionScheduler>().CancelCurrentAction();
         }
 
         private void PatrolBehaviour()
         {
-            navMeshAgent.speed = patrolSpeed;
+            navMeshAgent.speed = patrolMovementSpeed;
 
             Vector3 nextPosition = guardLocation;
 
@@ -140,4 +143,3 @@ namespace RPG.Control
         }
     }
 }
-

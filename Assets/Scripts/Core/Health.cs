@@ -6,6 +6,7 @@ namespace RPG.Core
 {
     public class Health : MonoBehaviour
     {
+        [Header("Tuning")]
         [SerializeField] float healthPoints = 100f;
 
         bool isDead = false;
@@ -34,4 +35,3 @@ namespace RPG.Core
         }
     }
 }
-

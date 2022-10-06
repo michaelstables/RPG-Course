@@ -9,12 +9,22 @@ namespace RPG.Combat
 {
     public class Fighter : MonoBehaviour, IAction
     {
+        [Header("Tuning")]
         [SerializeField] float weaponRange = 2f;
         [SerializeField] float timeBetweenAttacks = 1f;
         [SerializeField] int unarmedDamage = 5;
 
+        Mover mover;
+        Animator animator;
+
         Health target;
         float timeSinceLastAttack = Mathf.Infinity;
+
+        private void Start()
+        {
+            mover = GetComponent<Mover>();
+            animator = GetComponent<Animator>();
+        }
 
         private void Update()
         {
@@ -26,11 +36,11 @@ namespace RPG.Combat
 
             if (!IsInRange())
             {
-                GetComponent<Mover>().MoveTo(target.transform.position);
+               mover.MoveTo(target.transform.position);
             }
             else
             {
-                GetComponent<Mover>().Cancel();
+                mover.Cancel();
                 AttackBehaviour();
             }
         }
@@ -48,8 +58,8 @@ namespace RPG.Combat
 
         private void TriggerAttack()
         {
-            GetComponent<Animator>().ResetTrigger("stop attack");
-            GetComponent<Animator>().SetTrigger("attack");
+            animator.ResetTrigger("stop attack");
+            animator.SetTrigger("attack");
         }
 
         private bool IsInRange()
@@ -77,8 +87,8 @@ namespace RPG.Combat
 
         private void StopAttack()
         {
-            GetComponent<Animator>().ResetTrigger("attack");
-            GetComponent<Animator>().SetTrigger("stop attack");
+            animator.ResetTrigger("attack");
+            animator.SetTrigger("stop attack");
         }
 
         // Animation Event during Attack Animation
