@@ -17,6 +17,11 @@ PrefabInstance:
       propertyPath: weaponRange
       value: 2.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5202204469665503739, guid: 1f434aee6c1e3470ea98fed1a2478376,
+        type: 3}
+      propertyPath: unarmedDamage
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6800058454167174683, guid: 1f434aee6c1e3470ea98fed1a2478376,
         type: 3}
       propertyPath: m_Name
