@@ -9,18 +9,24 @@ namespace RPG.SceneManagement
 {
     public class Portal : MonoBehaviour
     {
+        [Header ("Scene Transition Tuning")]
+        [SerializeField] int sceneToLoad = -1;
+
+        [Tooltip("Player will spawn at the spawn point transform.position be sure to rotate so Z axis faces forwards")]
+        [SerializeField] Transform spawnPoint;
+
+        [Tooltip("Use the Destination Identifer Enum A, B, C, D to choose the corisponding portal to 'spawn' into on the scene to load")]
+        [SerializeField] DestinationIdentifier destination;
+
+        [Header("Scene Transition Effect Tuning")]
+        [SerializeField] float fadeOutTime = 1f;
+        [SerializeField] float fadeInTime = 2f;
+        [SerializeField] float fadeWaitTime = .5f;
+
         enum DestinationIdentifier
         {
             A, B, C, D, E
         }
-
-        [SerializeField] int sceneToLoad = -1;
-        [SerializeField] Transform spawnPoint;
-        [SerializeField] DestinationIdentifier destination;
-
-        [SerializeField] float fadeOutTime = 1f;
-        [SerializeField] float fadeInTime = 2f;
-        [SerializeField] float fadeWaitTime = .5f;
 
         private void OnTriggerEnter(Collider other)
         {
@@ -64,8 +70,8 @@ namespace RPG.SceneManagement
         {
             foreach (Portal portal in FindObjectsOfType<Portal>())
             {
-                if (portal == this) continue;
-                if (portal.destination != destination) continue;
+                if (portal == this) { continue; }
+                if (portal.destination != destination) { continue; }
                 return portal;
             }
 

@@ -6,6 +6,7 @@ namespace RPG.Control
 {
     public class PatrolPath : MonoBehaviour
     {
+        [Header("Tuning")]
         [SerializeField] float waypointGizmoRadius = 0.3f;
 
         private void OnDrawGizmos()
