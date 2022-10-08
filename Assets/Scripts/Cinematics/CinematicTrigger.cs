@@ -18,5 +18,4 @@ namespace RPG.Cinematics
             }           
         }
     }
-
 }
